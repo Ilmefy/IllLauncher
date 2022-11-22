@@ -36,9 +36,9 @@ namespace IllLauncher.Model
 
     public abstract class ServerBase
     {
-        public string Name { get;protected set; }
-        public string Realmlist { get;protected set; }
-        public Expansion Expansion { get;protected set; }
+        public string Name { get; set; }
+        public string Realmlist { get; set; }
+        public Expansion Expansion { get; set; }
     }
     public  class Social
     {

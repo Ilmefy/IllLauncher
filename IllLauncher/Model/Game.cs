@@ -7,16 +7,16 @@ namespace IllLauncher.Model
 
     public abstract class GameBase
     {
-        public  int Id { get; set; }
-        public  string Name { get; set; } = "";
-        public  Expansion Expansion { get; set; }
-        protected  string GameLauncherFileName { get; set; } = "";
-        protected  string CustomGameLauncherFIileName { get; set; } = "";
-        protected  string GameDirectory { get; set; } = "";
-        protected  string AddonsDirectory { get; set; } = "";
-        protected  string CacheDirectory { get; set; } = "";
-        protected  string WTFDirectory { get; set; } = "";
-        protected  FileVersionInfo GameLauncherFileVersionInfo { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; } = "";
+        public Expansion Expansion { get; set; }
+        protected string GameLauncherFileName { get; set; } = "";
+        protected string CustomGameLauncherFIileName { get; set; } = "";
+        protected string GameDirectory { get; set; } = "";
+        protected string AddonsDirectory { get; set; } = "";
+        protected string CacheDirectory { get; set; } = "";
+        protected string WTFDirectory { get; set; } = "";
+        protected FileVersionInfo GameLauncherFileVersionInfo { get; set; }
         protected virtual void SetRealmlist(string realmlist) { }
         protected void SetRealmlist(ServerBase server) => SetRealmlist(server.Realmlist);
         protected void SetRealmlist(Realm realm) => SetRealmlist(realm.Realmlist);
@@ -24,6 +24,11 @@ namespace IllLauncher.Model
         {
 
             return Process.Start(new ProcessStartInfo(GameLauncherFileName));
+        }
+        public static Expansion GetExpansion(string fileName)
+        {
+            FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(fileName);
+            return (Expansion)int.Parse(fileVersionInfo.FileVersion[0].ToString());
         }
         protected virtual void Initialize(string fileName)
         {
@@ -36,15 +41,16 @@ namespace IllLauncher.Model
             WTFDirectory = Directory.GetDirectories(GameDirectory, "WTF", SearchOption.AllDirectories).First(); ;
 
         }
+        public GameBase()
+        {
+        }
+        public GameBase(string fileName)=>Initialize(fileName);
     }
     public abstract class PreMopGame : GameBase
     {
         protected string RealmlistFileName { get; set; } = "";
-        public PreMopGame()
-        {
-
-        }
-        public PreMopGame(string fileName) => Initialize(fileName);
+        public PreMopGame() { }
+        public PreMopGame(string fileName) :base(fileName) { }
         protected override void SetRealmlist(string realmlist)
         {
             if (string.IsNullOrEmpty(RealmlistFileName))
@@ -65,17 +71,21 @@ namespace IllLauncher.Model
     public class VanillaGame : PreMopGame
     {
         public VanillaGame() { }
+        public VanillaGame(string fileName) : base(fileName) { }
     }
     public class TheBurningCrusadeGame:PreMopGame
     {
         public TheBurningCrusadeGame() { }
+        public TheBurningCrusadeGame(string fileName) : base(fileName) { }
     }
     public class WrathOfTheLichKingGame:PreMopGame
     {
         public WrathOfTheLichKingGame() { }
+        public WrathOfTheLichKingGame(string fileName) : base(fileName) { }
     }
     public class CataclysmGame:PreMopGame
     {
         public CataclysmGame() { }
+        public CataclysmGame(string fileName) : base(fileName) { }
     }
 }

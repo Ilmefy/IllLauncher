@@ -1,9 +1,12 @@
 ﻿using IllLauncher.Model;
+using IllLauncher.ViewModel;
 
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -25,10 +28,7 @@ namespace IllLauncher
     {
         public MainWindow()
         {
-            InitializeComponent();
-            PreMopGame preMopGame = new PreMopGame(@"D:\World of Warcraft - Wrath of The Lich King 3.3.5a\Sunwell.pl-World-of-Warcraft-Win-LegionRemaster\World of Warcraft\Wow.exe");
-            
-
+            InitializeComponent();         
         }
     }
 }
