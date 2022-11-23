@@ -2,20 +2,21 @@
 
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace IllLauncher.ViewModel
 {
     public partial class ShellViewModel:ObservableObject
     {
         public AppData AppData = new AppData();
+        [ObservableProperty]
+        ObservableObject _selectedViewModel;
+        [ObservableProperty]
+        string[] _menuItems = { "Main" };
         public ShellViewModel()
         {
             Initializer.Initialize(ref AppData);
+            //Use default ViewModel
+            _selectedViewModel = new MainViewModel(AppData);
+
         }
     }
 }
