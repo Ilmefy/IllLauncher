@@ -4,9 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:IllLauncher.View"
+             xmlns:viewModels="clr-namespace:IllLauncher.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <viewModels:MainViewModel x:Key="ViewModel"/>
+    </UserControl.Resources>
     <Grid Background="Red">
-            
+        <Button Content="TEST ADDGAME" Height="50" Command="{Binding AddGameCommand}" Width="100"/>
     </Grid>
 </UserControl>

@@ -8,6 +8,7 @@
         }
         private static void SaveUserData(UserData userData)
         {
+            if(userData)
             JsonHelper.SerializeToFile(userData, ReadonlyData.UserDataFileName);
         }
     }

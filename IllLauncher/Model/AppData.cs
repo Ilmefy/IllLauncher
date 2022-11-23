@@ -13,12 +13,20 @@ namespace IllLauncher.Model
     }
     public class UserData
     {
+        public bool HasChanged
+        {
+            get
+            {
+                if(Games.Any(c=>c.HasChanged))
+                return false;
+            }
+        }
         public List<GameBase> Games { get; set; } = new List<GameBase>();
-        public List<UserServer> Servers { get; set; }=new List<UserServer>();
-        
+        public List<UserServer> Servers { get; set; } = new List<UserServer>();
+
     }
     public class PublicData
     {
-        public List<PublicServer> Servers { get; set; }=new List<PublicServer>();
+        public List<PublicServer> Servers { get; set; } = new List<PublicServer>();
     }
 }

@@ -33,11 +33,8 @@ namespace IllLauncher.ViewModel
         {
             Initializer.Initialize(ref AppData);
             //Use default ViewModel
-            _selectedViewModel = new MainViewModel(AppData);
-        }
-        [RelayCommand]
-        public void SwitchView(string param)
-        {
+            
+            WrathOfTheLichKingGame wotlk = new WrathOfTheLichKingGame(@"D:\World of Warcraft - Wrath of The Lich King 3.3.5a\Sunwell.pl-World-of-Warcraft-Win-LegionRemaster\World of Warcraft\Wow.exe");
 
         }
     }
