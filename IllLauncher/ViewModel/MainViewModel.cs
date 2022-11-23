@@ -1,6 +1,7 @@
-﻿using IllLauncher.Model;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using IllLauncher.Model;
 
-using Microsoft.Toolkit.Mvvm.ComponentModel;
+
 
 namespace IllLauncher.ViewModel
 {
