@@ -11,6 +11,25 @@
         <viewModels:MainViewModel x:Key="ViewModel"/>
     </UserControl.Resources>
     <Grid Background="Red">
-        <Button Content="TEST ADDGAME" Height="50" Command="{Binding AddGameCommand}" Width="100"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ListView SelectedValue="{Binding SelectedGame}" ItemsSource="{Binding Games}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding GameLauncherFileName}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ListView Grid.Column="1" SelectedValue="{Binding SelectedServer}" ItemsSource="{Binding UserServers, UpdateSourceTrigger=PropertyChanged}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding Name}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Grid.Column="2" Content="TEST ADDGAME" Height="50" Command="{Binding AddGameCommand}" Width="100"/>
     </Grid>
 </UserControl>

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Xml.Linq;
 namespace IllLauncher.Model
 {
 
-    public abstract class ServerBase
+    public abstract class ServerBase:ITrackPropertyChange
     {
         public string Name { get; protected set; }
         public string Realmlist { get; protected set; }
@@ -15,7 +16,8 @@ namespace IllLauncher.Model
     }
     public class UserServer : ServerBase
     {
-        public bool HasChanged;
+        [JsonIgnore]
+        public bool HasChanged { get; set; }
         public void SetName(string value, bool acceptChanges=false)
         {
             if (string.Equals(Name, value))
@@ -30,7 +32,10 @@ namespace IllLauncher.Model
             Realmlist = value;
             if (!acceptChanges) HasChanged = true;
         }
-
+        public UserServer(string name, string realmlist, Expansion expansion)
+        {
+            Name=name; Realmlist = realmlist; Expansion= expansion;
+        }
 
     }
     public class PublicServer : ServerBase

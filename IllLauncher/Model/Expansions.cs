@@ -8,7 +8,7 @@ namespace IllLauncher.Model
 {
     public enum Expansion
     {
-        All,
+        All=1,
         Vanilla,
         TheBurningCrusade,
         WrathOfTheLichKing,

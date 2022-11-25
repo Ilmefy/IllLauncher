@@ -17,7 +17,8 @@ namespace IllLauncher.Model
         {
             get
             {
-                if(Games.Any(c=>c.HasChanged))
+                if (Games.Any(c => c.HasChanged) || Servers.Any(c => c.HasChanged))
+                    return true;
                 return false;
             }
         }

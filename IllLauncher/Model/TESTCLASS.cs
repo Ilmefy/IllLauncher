@@ -9,23 +9,21 @@ namespace IllLauncher.Model
 {
     public static class TESTCLASS
     {
-        public static List<T> GenerateServers<T>(int count, Expansion expansion)where T:ServerBase, new()
+        public static List<UserServer> GenerateUserServers(int count, Expansion expansion)
         {
-            List<T> servers = new List<T>();
-            for(int i=0; i<count; i++)
+            List<UserServer> servers = new List<UserServer>();
+            string x = (expansion == Expansion.Cataclysm) ? "CATA_" : "";
+            for (int i = 0; i < count; i++)
             {
-                T server=new T();
-                server.Expansion = expansion;
-                server.Realmlist = $"Realmlist_{i}";
-                server.Name = $"Name_{i}";
+                UserServer server = new UserServer($"{x}name_{i}","Set realmlist logon.TEST.PL", expansion);
                 servers.Add(server);
             }
-            return servers; 
+            return servers;
         }
         public static UserData GenerateUserData()
         {
             UserData userData = new UserData();
-            userData.Servers = GenerateServers<UserServer>(10, Expansion.WrathOfTheLichKing);
+            userData.Servers = GenerateUserServers(10, Expansion.WrathOfTheLichKing);
             GameCreator.CreateGame("D:\\World of Warcraft - Wrath of The Lich King 3.3.5a\\Sunwell.pl-World-of-Warcraft-Win-LegionRemaster\\World of Warcraft\\Wow.exe");
             return userData;
         }
