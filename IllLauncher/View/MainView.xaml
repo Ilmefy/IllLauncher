@@ -9,8 +9,9 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <viewModels:MainViewModel x:Key="ViewModel"/>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
     </UserControl.Resources>
-    <Grid Background="Red">
+    <Grid  Background="Red">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="150"/>
@@ -23,13 +24,29 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <ListView Grid.Column="1" SelectedValue="{Binding SelectedServer}" ItemsSource="{Binding UserServers, UpdateSourceTrigger=PropertyChanged}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Label Content="{Binding Name}"/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        <Button Grid.Column="2" Content="TEST ADDGAME" Height="50" Command="{Binding AddGameCommand}" Width="100"/>
+        <StackPanel  Visibility="{Binding IsAnyGameSelected, Converter={StaticResource BoolToVisibility}}" Grid.Column="1" Background="Yellow" >
+            <!--Visibility="{Binding DisplayUserServersTab, Converter={StaticResource BoolToVisibility}}">-->
+            <ToggleButton Content="USERSSERVERS" IsChecked="{Binding DisplayUserServers}"/>
+            <ListView Visibility="{Binding DisplayUserServers, Converter={StaticResource BoolToVisibility}}" SelectedValue="{Binding SelectedServer}" ItemsSource="{Binding UserServers, UpdateSourceTrigger=PropertyChanged}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding Name}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <ToggleButton Content="DISPLAY PUBLIC SERVERS" IsChecked="{Binding DisplayPublicServers}"/>
+            <ListView Visibility="{Binding DisplayPublicServers,Converter={StaticResource BoolToVisibility}}" Grid.Column="1" SelectedValue="{Binding SelectedServer}" ItemsSource="{Binding PublicServers, UpdateSourceTrigger=PropertyChanged}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding Name}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+        <Grid Grid.Column="2" Visibility="{Binding IsAnyGameSelected, Converter={StaticResource BoolToVisibility}}">
+            <Button Grid.Column="2" Content="TEST ADDGAME" Height="50" Command="{Binding AddGameCommand}" Width="100"/>
+        </Grid>
+        
     </Grid>
 </UserControl>

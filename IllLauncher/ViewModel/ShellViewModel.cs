@@ -11,8 +11,9 @@ namespace IllLauncher.ViewModel
 {
     public partial class ShellViewModel:ObservableObject
     {
+
+        public AppData AppData;
         
-        public AppData AppData = new AppData();
         [ObservableProperty]
         ObservableObject _selectedViewModel;
         [ObservableProperty]
@@ -32,14 +33,13 @@ namespace IllLauncher.ViewModel
         }
         public ShellViewModel()
         {
-            Initializer.Initialize(ref AppData);
+             AppData=  new AppData();
             //Use default ViewModel
-            SelectedViewModel = new MainViewModel(AppData); 
+            SelectedViewModel = new MainViewModel(AppData);
 
-            WrathOfTheLichKingGame wotlk = new WrathOfTheLichKingGame(@"D:\World of Warcraft - Wrath of The Lich King 3.3.5a\Sunwell.pl-World-of-Warcraft-Win-LegionRemaster\World of Warcraft\Wow.exe");
-            AppData.UserData.Games.Add(wotlk);
-            AppData.UserData.Servers = TESTCLASS.GenerateUserServers(10, Expansion.WrathOfTheLichKing);
-            AppData.UserData.Servers.AddRange(TESTCLASS.GenerateUserServers(10, Expansion.Cataclysm));
+
+
+
         }
         [RelayCommand]
         public void ExitApp()

@@ -13,7 +13,8 @@ namespace IllLauncher.Model
         {
             if (!userData.HasChanged)
                 return;
-            JsonHelper.SerializeToFile(userData, ReadonlyData.UserDataFileName);
+            JsonHelper jsonHelper = new JsonHelper();
+        jsonHelper.SerializeToFile(userData, ReadonlyData.UserDataFileName);
         }
     }
 }

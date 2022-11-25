@@ -21,12 +21,16 @@ namespace IllLauncher.ViewModel
         ServerBase _selectedServer;
         [ObservableProperty]
         GameBase _selectedGame;
+        [ObservableProperty]
+        bool _isAnyGameSelected;
         partial void OnSelectedGameChanged(GameBase value)
         {
+
             OnPropertyChanged(nameof(PublicServers));           
             if (!UserServers.Any())
                 return;
             DisplayUserServersTab = true;
+            IsAnyGameSelected = true;
             OnPropertyChanged(nameof(UserServers));
         }
         [ObservableProperty]

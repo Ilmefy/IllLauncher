@@ -128,14 +128,14 @@ namespace IllLauncher.Model
             {
                 case Expansion.All:
              
-                case Expansion.Vanilla:
-                    return new VanillaGame(fileName);
-                case Expansion.TheBurningCrusade:
-                    return new TheBurningCrusadeGame(fileName);
+                //case Expansion.Vanilla:
+                //    return new VanillaGame(fileName);
+                //case Expansion.TheBurningCrusade:
+                //    return new TheBurningCrusadeGame(fileName);
                 case Expansion.WrathOfTheLichKing:
                     return new WrathOfTheLichKingGame(fileName);
                 case Expansion.Cataclysm:
-                    return new CataclysmGame(fileName);
+                    //return new CataclysmGame(fileName);
                 case Expansion.MistsOfPandaria:
                     break;
                 case Expansion.WarlodsOfDraenor:
